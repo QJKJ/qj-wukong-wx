@@ -118,14 +118,17 @@ Page({
         //   })
         //   return;
         // }
-          wx.showModal({
-            title: res.data.code,
-            content: res.data.msg,
-            showCancel: false
-          })
-
+        
         // 跳转到结算页面
         wx.navigateBack({})
+
+        wx.showModal({
+          title: res.data.code+"",
+          content: res.data.message,
+          showCancel: false
+        })
+
+        
       }
     })
   },
@@ -273,9 +276,8 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.request({
-            url: 'https://api.it120.cc/' + app.globalData.subDomain + '/user/shipping-address/delete',
+            url: 'http://127.0.0.1:8090/wx/receivingAddress/deleteById',
             data: {
-              token: app.globalData.token,
               id: id
             },
             success: (res) => {
